@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>API Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="APIManager.js"></script>
+    <script src="Renderer.js"></script>
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <script id="usersData-template" type="text/x-handlebars-template">
+        <div class="user-info">
+            <img id="profile-pic" src="{{pic}}">
+            <div class="user-data">
+                <p>{{first}} {{last}}</p>
+                <p>{{city}}, {{state}}</p>
+            </div>
+        </div>
+    </script>
+
+    <script id="friendsData-template" type="text/x-handlebars-template">
+        {{#if this.length}}
+            <ul>
+            {{#each this}}
+                <li>{{first}} {{last}}</li>
+            {{/each}}
+            </ul>
+        {{/if}}
+    </script>
+
+    <script id="quotesData-template" type="text/x-handlebars-template">
+        {{#if this.length}}
+            <p>Favorite quote:</p>
+            {{#each this}}
+                <span>"{{capitalize quote}}"<br>- Kanye</span>
+            {{/each}}
+        {{/if}}
+    </script>
+
+    <script id="baconsData-template" type="text/x-handlebars-template">
+        {{#if this.length}}
+            <p class="meat-text">About me:</p>
+            {{#each this}}
+                <p class="meat-text">{{capitalize bacon}}</p>
+            {{/each}}
+        {{/if}}
+    </script>
+
+    <script id="pokemonsData-template" type="text/x-handlebars-template">
+        {{#if this.length}}
+            {{#each this}}
+                <img id="pokemon-image" src="{{image}}">
+                <p id="pokemon-text">Favorite Pokemon: {{capitalize text}}</p>
+            {{/each}}
+        {{/if}}
+    </script>
+
+    <div class="container">
+        <div class="user-container"></div>
+        <div class="quote-container"></div>
+        <div class="content-container">
+            <div class="pokemon-container"></div>
+            <div class="meat-container"></div>
+        </div>
+        <div class="friends">
+            <h4>Friends</h4>
+            <div class="friends-container"></div>
+        </div>
+        <div class="buttons">
+            <button id="btn_loadData">Load User Data</button>
+            <button id="btn_displayData">Display User</button>
+            <button id="btn_saveStorage">Save User Page</button>
+            <button id="btn_loadStorage">Load User Page</button>
+        </div>
+    </div>
+</body>
+
+</html>
